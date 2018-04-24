@@ -1,0 +1,17 @@
+.callout {
+  font-size: 150%;
+  color: white;
+  padding: 5px;
+}
+
+.callout.success {
+  background-color: green;
+}
+
+.callout.error {
+  background-color: red;
+}
+
+.error-details {
+  background-color: lightgrey;
+}

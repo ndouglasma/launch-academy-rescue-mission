@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rescue Mission</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+    <div class="flash">
+      <% if flash.any? %>
+        <% flash.each do |name, msg| %>
+          <%= content_tag :div, msg, class: "callout #{name}" %>
+        <% end %>
+      <% end %>
+      <% flash.clear %>
+    </div>
+    <div class="container">
+      <%= yield %>
+    </div>
+  </body>
+</html>

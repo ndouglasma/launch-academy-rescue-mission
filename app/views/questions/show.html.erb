@@ -1,0 +1,55 @@
+<div class="question-show">
+  <p>
+    <strong>Question Title:</strong>
+    <%= @question.title %>
+  </p>
+
+  <p>
+    <strong>Question Description:</strong>
+    <%= @question.description %>
+  </p>
+
+  <button class="button"><%= link_to "Edit Question", edit_question_path(@question) %></button>
+  <button class="button"><%= link_to "Delete Question", question_path(@question), :method => :delete %></button>
+
+</div>
+
+<div class="answer-form">
+  <div class="error-details">
+    <% if @answer.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@answer.errors.count, "error") %> prohibited your answer update from being saved:</h2>
+        <ul>
+        <% @answer.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+
+  <%= form_for [@question, @answer] do |f| %>
+    <div class="field">
+      <%= f.label :detail %><br />
+      <%= f.text_field :detail %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>
+
+<div class="answers-show">
+  <strong>Answers:</strong>
+  <% if @question.answers.nil? || @question.answers.length == 0 %>
+    <p><i>No answers submitted yet.</i></p>
+  <% else %>
+    <ul>
+      <% @question.answers.order(created_at: :desc).each do |answer| %>
+      <li><%= answer.detail %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+
+<button class="button"><%= link_to 'Back to Questions', questions_path %></button>

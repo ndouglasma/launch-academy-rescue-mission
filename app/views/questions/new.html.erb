@@ -1,0 +1,32 @@
+<div class="question-new">
+  <h1>New Question</h1>
+
+  <div class="error-details">
+    <% if @question.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@question.errors.count, "error") %> prohibited your new question from being saved:</h2>
+        <ul>
+        <% @question.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+
+  <%= form_for [@question] do |f| %>
+    <div class="field">
+      <%= f.label :title %><br />
+      <%= f.text_field :title %>
+    </div>
+    <div class="field">
+      <%= f.label :description %><br />
+      <%= f.text_field :description %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+
+  <button class="button"><%= link_to 'Back to Questions', questions_path %></button>
+</div>
